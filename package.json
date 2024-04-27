@@ -4,11 +4,29 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "emcc src/waxc_min.c -s WASM=0 -O3 -o docs/waxc.js -s EXPORTED_FUNCTIONS='[\"_transpile\"]' -s EXPORTED_RUNTIME_METHODS='[\"cwrap\"]' -s MODULARIZE=1 -s 'EXPORT_NAME=\"waxc\"'",
-    "build:cli": "emcc src/waxc.c -sEXPORT_ES6 -s WASM=0 -lnodefs.js -s NODERAWFS=1 -O3 -o build/waxc.js",
-    "serve": "serve docs"
+    "build:wasm": "npm run build:wasm-web && npm run build:wasm-node && node build.js wasm",
+    "build:wasm-web": "emcc src/waxc_min.c -s WASM=0 -O3 -o src/waxc-web.js -s EXPORTED_FUNCTIONS='[\"_transpile\"]' -s EXPORTED_RUNTIME_METHODS='[\"cwrap\"]' -s MODULARIZE=1 -s 'EXPORT_NAME=\"waxc\"'",
+    "build:wasm-node": "emcc src/waxc.c -sEXPORT_ES6 -s WASM=0 -lnodefs.js -s NODERAWFS=1 -O3 -o src/waxc-cli.js",
+    "serve": "serve docs",
+    "build:esm": "node build.js esm",
+    "build:web": "node build.js web",
+    "build:types": "tsc --project tsconfig.types.json --declaration --emitDeclarationOnly --outDir build/types",
+    "build": "mkdir -p build && npm run clean && npm run format && npm run build:web && npm run build:esm",
+    "dev": "node build.js dev",
+    "dev:docs": "npm run docs -- --watch --preserveWatchOutput",
+    "cli": "node build/esm/wax.js",
+    "docs": "typedoc",
+    "test": "tsx test/index.ts",
+    "clean": "rm -rf build/cjs/* && rm -rf build/esm/* && rm -rf build/web/*",
+    "format": "prettier --no-config --no-semi --single-quote --write src ",
+    "release": "npm run build && npm publish --access public"
   },
+  "dependencies": {},
   "devDependencies": {
+    "@gjsify/esbuild-plugin-transform-ext": "^0.0.4",
+    "concurrently": "^8.2.2",
+    "esbuild": "^0.20.2",
+    "prettier": "^3.2.5",
     "serve": "^14.2.3"
   }
 }

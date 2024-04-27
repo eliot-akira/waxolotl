@@ -4,15 +4,74 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>waxon</title>
+  <title>waxolotl</title>
+  <style>
+html { margin: 0; font-size: 14px; }
+body { margin: 0 1rem; }
+h1, h2, h4 {
+  margin: 1rem 0;
+}
+select {
+  margin: .5rem 0;
+}
+.panes {
+  display: flex;
+}
+.pane {
+  max-width: 50vw;
+}
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+}
+#consoleView {
+  font-size: 12px;
+  white-space: pre;
+}
+  </style>
 </head>
 <body>
+  <div class="panes">
+    <div class="pane">
+    <h1>waxolotl</h1>
+  <h4>Example</h4>
+  <select id="example">
+    <option value=delaunay.wax>delaunay.wax</option>
+    <option value=fib.wax>fib.wax</option>
+    <option value=flocking.wax>flocking.wax</option>
+    <option value=helloworld.wax>helloworld.wax</option>
+    <option value=hilbert.wax>hilbert.wax</option>
+    <!-- <option value=kmeans.wax>kmeans.wax</option> -->
+    <option value=line.wax>line.wax</option>
+    <option value=nqueens.wax>nqueens.wax</option>
+    <option value=poissondisk.wax>poissondisk.wax</option>
+    <option value=quicksort.wax>quicksort.wax</option>
+    <option value=quine.wax>quine.wax</option>
+    <option value=raycast.wax>raycast.wax</option>
+    <!-- <option value=traceskeleton.wax>traceskeleton.wax</option> -->
+    <option value=turing.wax>turing.wax</option>
+    <option value=vororelax.wax>vororelax.wax</option>
+  </select>
+  <br>
 
-<div id="svgView"></div>
-<pre id="consoleView"><code></code></pre>
+  <h2>Source</h2>
+  <pre><code id=wax-code></code></pre>
+  <hr>
+  <h2>WebAssembly</h2>
+  <pre><code id=wat-code></code></pre>
+      
+      
+    </div>
+    <div class="pane">
 
-  <script src=/waxc.js></script>
-  <script src=/wat-compiler.js></script>
-  <script src=/index.js></script>
+    <h2>Result</h2>
+  <div id="svgView"></div>
+  <pre id="consoleView"><code></code></pre>
+
+    </div>
+  </div>
+
+  <script src=/web.js></script>
+  <script src=/web-docs.js></script>
 </body>
 </html>
