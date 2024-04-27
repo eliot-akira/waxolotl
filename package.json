@@ -1,6 +1,7 @@
 {
   "name": "waxolotl",
-  "description": "",
+  "version": "0.0.1",
+  "description": "A small language that compiles to WebAssembly Text format",
   "module": "index.ts",
   "type": "module",
   "scripts": {
