@@ -1021,8 +1021,8 @@ str_t expr_to_wat(expr_t* expr, int indent, char lr){
 
   }else if (expr->key == EXPR_ASM){
     
-    str_add(&out,str_unquote(expr_to_c(CHILD1,-1)).data);
-    indent=-1;
+    // str_add(&out,str_unquote(expr_to_c(CHILD1,-1)).data);
+    // indent=-1;
   }else if (expr->key == EXPR_EXTERN){
     out.len-=2;
     out.data[out.len] = 0;
