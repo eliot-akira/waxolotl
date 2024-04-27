@@ -1,0 +1,14 @@
+{
+  "name": "waxolotl",
+  "description": "",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "emcc src/waxc_min.c -s WASM=0 -O3 -o docs/waxc.js -s EXPORTED_FUNCTIONS='[\"_transpile\"]' -s EXPORTED_RUNTIME_METHODS='[\"cwrap\"]' -s MODULARIZE=1 -s 'EXPORT_NAME=\"waxc\"'",
+    "build:cli": "emcc src/waxc.c -sEXPORT_ES6 -s WASM=0 -lnodefs.js -s NODERAWFS=1 -O3 -o build/waxc.js",
+    "serve": "serve docs"
+  },
+  "devDependencies": {
+    "serve": "^14.2.3"
+  }
+}
