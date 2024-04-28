@@ -15,7 +15,7 @@ declare global {
   const $console = $consoleContainer?.querySelector('code')
 
   async function loadExample(name: string): Promise<string> {
-    return await (await fetch(`/examples/${name}`)).text()
+    return await (await fetch(`examples/${name}`)).text()
   }
 
   function renderResult({ output }: { output: string }) {
